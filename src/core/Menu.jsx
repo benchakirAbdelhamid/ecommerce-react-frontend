@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  Navbar,
-  Collapse,
-  Button,
-  IconButton,
-} from "@material-tailwind/react";
-import {
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Navbar, Collapse, Button, IconButton } from "@material-tailwind/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { API_URL } from "../config";
@@ -18,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import {isAuthenticated} from "../auth/helpers"
+import { isAuthenticated } from "../auth/helpers";
 
 export default function NavbarMenu() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -48,16 +40,14 @@ export default function NavbarMenu() {
       {/* <ToastContainer/> */}
       <Navbar className="mx-auto max-w-screen-xl px-4 py-2">
         <div className="flex items-center justify-between text-blue-gray-900">
-          
-            <NavLink to="/ecommerce">
-              <span
-                style={{ fontWeight: "bold" }}
-                className="links mr-4 cursor-pointer py-1.5 lg:ml-2"
-              >
-                Ecommerce
-              </span>
-            </NavLink>
-          
+          <NavLink to="/ecommerce">
+            <span
+              style={{ fontWeight: "bold" }}
+              className="links mr-4 cursor-pointer py-1.5 lg:ml-2"
+            >
+              Ecommerce
+            </span>
+          </NavLink>
 
           <div className="hidden lg:block">
             {isAuthenticated() && (
@@ -67,9 +57,14 @@ export default function NavbarMenu() {
                     Home
                   </span>
                 </NavLink>
-                <NavLink to="/dashboard">
-                  <span className="links font-medium cursor-pointer py-1.5 lg:ml-2 blue-gray">
-                  dashboard
+                <NavLink
+                  to={`${
+                    isAuthenticated() && isAuthenticated().user.role === 1
+                      ? "/admin"
+                      : ""
+                  }/dashboard`}
+                >
+                  <span className="links font-medium cursor-pointer py-1.5 lg:ml-2 blue-gray"> dashboard 
                   </span>
                 </NavLink>
               </>
@@ -117,28 +112,24 @@ export default function NavbarMenu() {
           </IconButton>
         </div>
         <Collapse open={openNav}>
-
-
-        {isAuthenticated() && (
-              <>
-                <NavLink to="/">
-                  <span className="links font-medium cursor-pointer py-1.5 lg:ml-2 blue-gray">
-                    Home
-                  </span>
-                </NavLink>
-                <br />
-                <NavLink to="/store">
-                  <span className="links font-medium cursor-pointer py-1.5 lg:ml-2 blue-gray">
-                    Store
-                  </span>
-                </NavLink>
-              </>
-            )}
-
+          {isAuthenticated() && (
+            <>
+              <NavLink to="/">
+                <span className="links font-medium cursor-pointer py-1.5 lg:ml-2 blue-gray">
+                  Home
+                </span>
+              </NavLink>
+              <br />
+              <NavLink to="/store">
+                <span className="links font-medium cursor-pointer py-1.5 lg:ml-2 blue-gray">
+                  Store
+                </span>
+              </NavLink>
+            </>
+          )}
 
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden ">
-            
-          {!isAuthenticated() && (
+            {!isAuthenticated() && (
               <>
                 <NavLink className="w-full mt-4" to="/signup">
                   <span className="links cursor-pointer py-1.5 lg:ml-2">
@@ -149,16 +140,19 @@ export default function NavbarMenu() {
                 </NavLink>
                 <NavLink className="w-full mt-4" to="/signin">
                   <span className="links  cursor-pointer py-1.5 lg:ml-2">
-                    <Button className="w-full" size="sm"> Sign In</Button>
+                    <Button className="w-full" size="sm">
+                      {" "}
+                      Sign In
+                    </Button>
                   </span>
                 </NavLink>
               </>
             )}
 
             {isAuthenticated() && (
-              <NavLink   onClick={signout} className='mt-4 w-full'>
-                <span  className="links  cursor-pointer py-1.5 lg:ml-2">
-                  <Button className="w-full"  size="sm" variant="outlined">
+              <NavLink onClick={signout} className="mt-4 w-full">
+                <span className="links  cursor-pointer py-1.5 lg:ml-2">
+                  <Button className="w-full" size="sm" variant="outlined">
                     Sign Out
                   </Button>
                 </span>

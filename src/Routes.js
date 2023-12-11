@@ -8,81 +8,62 @@ import { ToastContainer } from "react-toastify";
 import NavbarMenu from "./core/Menu";
 import Dashboard from "./user/Dashboard";
 import { isAuthenticated } from "./auth/helpers";
-import PrivateRoute from "./auth/PrivateRoute";
-
-// component routes
-import AuthLayout from "./components/AuthLayout";
-import IndexLayout from "./components/IndexLayout";
-// component routes
+import PrivateRoutes from "./auth/PrivateRoutes";
+import AdminDashboard from "./user/AdminDashboard";
+import AdminRoute from "./auth/AdminRoute";
+import AddCategory from "./admin/category/AddCategory";
 
 const AppRoutes = () => {
+  const isAuthenticateed = () => {
+    return true;
+  };
+
   return (
     <>
       {/* container Toastify */}
       <ToastContainer />
       <BrowserRouter>
         <NavbarMenu />
-        {/* ============ my code ============ */}
-        <Routes>
-        {/* <Route path="/"  element={<Home />} /> */}
-        <Route path="/" 
-             element={
-              isAuthenticated() ? <Home /> : <Navigate to="/signin" replace />
-            }
-          />
-        <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-         <Route path="*" element=<Navigate to="/signin" replace /> /> 
-        </Routes>
-        {/* ============  code zakaria ============ */}
-
-        {/* <Routes> */}
-          {/* <Route path="/"  element={<Home />} /> */}
-          {/* <Route
-            path="/"
-            element={
-              isAuthenticated() ? <Home /> : <Navigate to="/signin" replace />
-            }
-          /> */}
-          {/* <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="*" element=<Navigate to="/signin" replace /> /> */}
-        {/* </Routes> */}
+        {/* ============  problem return value token============ */}
 
         {/* <Routes>
           <Route
-            path="/signin"
-            element={!isAuthenticated() ? <AuthLayout /> : <Navigate to="/" />}
-          >
-            <Route index element={<Signin />} />
-            <Route path="/Signup" element={<Signup />} />
-          </Route>
+            path="/Signin"
+            element={!isAuthenticateed() ? <Signin /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/Signup"
+            element={!isAuthenticateed() ? <Signup /> : <Navigate to="/" />}
+          />
+
           <Route
             path="/"
             element={
-              isAuthenticated() ? <IndexLayout /> : <Navigate to="/signin" />
+              isAuthenticateed() ? <IndexLayout /> : <Navigate to="/Signin" />
             }
           >
             <Route index element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/*" element={"not found"} />
           </Route>
-              
+        
         </Routes> */}
 
+        {/* =========code provate routes=========== */}
 
-{/* <Routes>
-      
-      <Route path="/Signin" element={!isAuthenticated() ? <Signin /> : <Navigate to="/" />} />
-      <Route path="/Signup" element={!isAuthenticated() ? <Signup /> : <Navigate to="/" />} />
-
-      <Route path="/" element={ isAuthenticated() ? <IndexLayout /> : <Navigate to="/Signin" />}>
-        <Route index element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route>
-
-    </Routes> */}
+        <Routes>
+          <Route element={<PrivateRoutes />}>
+            <Route element={<Home />} path="/" exact />
+            <Route element={<Dashboard />} path="/dashboard" />
+            <Route element={<Navigate to="/" />} path="*" />
+          </Route>
+          <Route element={<AdminRoute />}>
+            <Route element={<AdminDashboard />} path="/admin/dashboard" />
+            <Route element={<AddCategory />} path="/create/category" />
+          </Route>
+          <Route path="/Signin" element={<Signin />} />
+          <Route path="/Signup" element={<Signup />} />
+        </Routes>
       </BrowserRouter>
     </>
   );

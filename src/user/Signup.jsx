@@ -35,7 +35,7 @@ const Signup = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        // console.log('token and info ==>',res);
         if (res.error) {
           toast.warning(`${res.error} , Please Check form !`, {
             position: toast.POSITION.BOTTOM_LEFT,
