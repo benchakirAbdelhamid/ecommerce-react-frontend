@@ -19,3 +19,14 @@ color: rgba(83, 6, 155, 0.964) !important;
     /* background-color: rgb(95, 84, 84) !important;
     color: rgb(61, 3, 55) !important; */
 }
+
+.container-form{
+    /* border: 1px solid red; */
+    width:700px;
+    margin: auto;
+}
+@media (max-width:800px) {
+    .container-form{
+        width:90%;
+    }
+}

@@ -44,7 +44,7 @@ const AdminDashboard = () => {
               <Link to="/create/category">Create category</Link>
             </ListItem>
             <ListItem>
-              <Link to="/product/create">create product</Link>
+              <Link to="/create/product">create product</Link>
             </ListItem>
           </List>
         </div>

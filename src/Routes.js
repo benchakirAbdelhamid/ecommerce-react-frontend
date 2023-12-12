@@ -12,6 +12,7 @@ import PrivateRoutes from "./auth/PrivateRoutes";
 import AdminDashboard from "./user/AdminDashboard";
 import AdminRoute from "./auth/AdminRoute";
 import AddCategory from "./admin/category/AddCategory";
+import AddProduct from "./admin/product/AddProduct";
 
 const AppRoutes = () => {
   const isAuthenticateed = () => {
@@ -60,6 +61,7 @@ const AppRoutes = () => {
           <Route element={<AdminRoute />}>
             <Route element={<AdminDashboard />} path="/admin/dashboard" />
             <Route element={<AddCategory />} path="/create/category" />
+            <Route element={<AddProduct />} path="/create/product" />
           </Route>
           <Route path="/Signin" element={<Signin />} />
           <Route path="/Signup" element={<Signup />} />
