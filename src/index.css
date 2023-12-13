@@ -30,3 +30,13 @@ color: rgba(83, 6, 155, 0.964) !important;
         width:90%;
     }
 }
+
+.img-card{
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+.nav-card{
+    text-transform: uppercase;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../core/Layout";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -18,7 +18,24 @@ const AddProduct = () => {
     category : 0
   });
 
-  const [formData] = useState(new FormData());
+  const [formData , setFormData] = useState(new FormData());
+  const [categories , setCategories] = useState([]);
+
+  const getcategories = ()=>{
+    fetch(`${API_URL}/category`, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type":"application/json",
+      },
+    })
+    .then(res => res.json())
+    .then(res => setCategories(res.categories)  )
+    // .then(res => console.log('categories ==>',res.categories)  )
+    .catch(err => console.log(err) )
+  }
+  useEffect(()=> getcategories(), [])
+  
 
   const handleChange = (e) => {
     const value = e.target.id === "photo" ? e.target.files[0] : e.target.value;
@@ -67,6 +84,7 @@ const AddProduct = () => {
           shipping: false,
           category : 0
         });
+        setFormData(new FormData())
       })
       .catch((err) =>
         toast.error(`${err} , Server error !`, {
@@ -181,8 +199,11 @@ const AddProduct = () => {
                   id="category"
                   class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 >
-                  <option selected value="0">Select a category</option>
-                  <option value="655bc65a73a1ba7e6f7178bc">html</option>
+                  <option value="0">Select a category</option>
+                  {categories && categories.map((category , index)=>
+                    <option key={index} value={category._id}>{category.name}</option> 
+                  )}
+
                 </select>
               </div>
 
@@ -196,7 +217,7 @@ const AddProduct = () => {
                   id="shipping"
                   class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 >
-                  <option selected value="false">No</option>
+                  <option value="false">No</option>
                   <option value="true">Yes</option>
                 </select>
               </div>
