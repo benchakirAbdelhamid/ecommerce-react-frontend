@@ -7,19 +7,22 @@ import { HiCurrencyDollar } from "react-icons/hi";
 import ShowImage from "./ShowImage";
 
 
-const Card = ({ product }) => {
+const Card = ({ product,className }) => {
   return (
     <>
-      <div class=" pt-3 my-4 mx-1 relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
+      <div style={{width : className}} class=" pt-3 my-4 mx-1 relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
         <div class="relative mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
           <ShowImage item={product} url='product/photo' className='img-card' ></ShowImage>
           <div class="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-black/60"></div>
         </div>
         <div class="p-6">
           <div class=" nav-card flex items-center justify-between mb-3">
-            <h5 class=" block font-sans text-xl antialiased font-medium leading-snug tracking-normal text-blue-gray-900">
+            <span class=" block font-sans text-xl antialiased font-medium leading-snug tracking-normal text-blue-gray-900">
               {product.name}
-            </h5>
+              <span class="ml-2 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+              {product.category.name}
+              </span>
+            </span>
             <p class="flex items-center gap-1.5 font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased">
               <HiCurrencyDollar style={{color:'gray' , fontSize:'25px'}} />
               {product.price} DH

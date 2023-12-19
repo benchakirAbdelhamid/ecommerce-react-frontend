@@ -13,6 +13,7 @@ import AdminDashboard from "./user/AdminDashboard";
 import AdminRoute from "./auth/AdminRoute";
 import AddCategory from "./admin/category/AddCategory";
 import AddProduct from "./admin/product/AddProduct";
+import Shop from "./core/Shop";
 
 const AppRoutes = () => {
   const isAuthenticateed = () => {
@@ -55,6 +56,7 @@ const AppRoutes = () => {
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route element={<Home />} path="/" exact />
+            <Route element={<Shop />} path="/shop" />
             <Route element={<Dashboard />} path="/dashboard" />
             <Route element={<Navigate to="/" />} path="*" />
           </Route>

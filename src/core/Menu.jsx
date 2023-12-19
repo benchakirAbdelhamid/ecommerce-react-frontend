@@ -57,6 +57,11 @@ export default function NavbarMenu() {
                     Home
                   </span>
                 </NavLink>
+                <NavLink to="/shop">
+                  <span className="links font-medium cursor-pointer py-1.5 lg:ml-2 blue-gray">
+                    Store
+                  </span>
+                </NavLink>
                 <NavLink
                   to={`${
                     isAuthenticated() && isAuthenticated().user.role === 1
@@ -64,7 +69,7 @@ export default function NavbarMenu() {
                       : ""
                   }/dashboard`}
                 >
-                  <span className="links font-medium cursor-pointer py-1.5 lg:ml-2 blue-gray"> dashboard 
+                  <span className="links font-medium cursor-pointer py-1.5 lg:ml-2 blue-gray"> Dashboard 
                   </span>
                 </NavLink>
               </>
