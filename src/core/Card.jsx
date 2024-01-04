@@ -17,13 +17,13 @@ const Card = ({ product,className }) => {
         </div>
         <div class="p-6">
           <div class=" nav-card flex items-center justify-between mb-3">
-            <span class=" block font-sans text-xl antialiased font-medium leading-snug tracking-normal text-blue-gray-900">
+            <span style={{ width:'50%'}} class=" block font-sans text-md antialiased font-medium leading-snug tracking-normal text-blue-gray-900">
               {product.name}
-              <span class="ml-2 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+              <span class="ml-2 mt-2 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
               {product.category.name}
               </span>
             </span>
-            <p class="flex items-center gap-1.5 font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased">
+            <p style={{ width:'50%'}} class="flex justify-end gap-1.5 font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased">
               <HiCurrencyDollar style={{color:'gray' , fontSize:'25px'}} />
               {product.price} DH
             </p>

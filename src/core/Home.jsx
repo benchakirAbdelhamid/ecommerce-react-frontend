@@ -6,6 +6,7 @@ import Card from "./Card";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 import CardSkeleton from "../components/CardSkeleton";
+import Search from "./Search";
 
 function Home() {
   const [productsBestSellers, setProductsBestSellers] = useState([]);
@@ -13,16 +14,32 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   const loadBestSellers = () => {
-    getProducts("sold", "desc", 10).then((products) => {
-      setProductsBestSellers(products);
-      setIsLoading(false);
-    });
+    // with query-strinf dynamic paramc
+    getProducts({ sortBy: "sold", order: "desc", limit: 6 }).then(
+      (products) => {
+        setProductsBestSellers(products);
+        setIsLoading(false);
+      }
+    );
+
+    // getProducts("sold", "desc", 12).then((products) => {
+    //   setProductsBestSellers(products);
+    //   setIsLoading(false);
+    // });
   };
   const loadArrivals = () => {
-    getProducts("createAt", "desc", 3).then((products) => {
-      setProductsArrivals(products);
-      setIsLoading(false);
-    });
+     // with query-strinf dynamic paramc
+    getProducts({ sortBy: "createAt", order: "desc", limit: 3 }).then(
+      (products) => {
+        setProductsArrivals(products);
+        setIsLoading(false);
+      }
+    );
+
+    // getProducts("createAt", "desc", 3).then((products) => {
+    //   setProductsArrivals(products);
+    //   setIsLoading(false);
+    // });
   };
   useEffect(() => {
     loadBestSellers();
@@ -36,6 +53,7 @@ function Home() {
         description="Node React Ecommerce App"
         className=""
       >
+        <Search />
         <div className="w-5/6 mx-auto mt-8">
           <h1 class="text-2xl ">Arrival Products</h1>
         </div>

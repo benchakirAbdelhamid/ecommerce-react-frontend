@@ -1,8 +1,21 @@
 import { API_URL } from "../config";
+import queryString from "query-string";
 
-export const getProducts = (sortBy, order, limit) => {
+// export const getProducts = (sortBy, order, limit) => {
+//   return fetch(
+//     `${API_URL}/product?sortBy=${sortBy}&order=${order}&limit=${limit}`
+//   )
+//     .then((res) => res.json())
+//     .then((res) => res.products)
+//     .catch((err) => console.log(err));
+// };
+
+// // one param dynamic with query-string package
+export const getProducts = (params) => {
+  let query = queryString.stringify(params)
+
   return fetch(
-    `${API_URL}/product?sortBy=${sortBy}&order=${order}&limit=${limit}`
+    `${API_URL}/product?${query}`
   )
     .then((res) => res.json())
     .then((res) => res.products)

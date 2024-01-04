@@ -14,6 +14,7 @@ import AdminRoute from "./auth/AdminRoute";
 import AddCategory from "./admin/category/AddCategory";
 import AddProduct from "./admin/product/AddProduct";
 import Shop from "./core/Shop";
+import Swiper from "./Swiper";
 
 const AppRoutes = () => {
   const isAuthenticateed = () => {
@@ -65,6 +66,7 @@ const AppRoutes = () => {
             <Route element={<AddCategory />} path="/create/category" />
             <Route element={<AddProduct />} path="/create/product" />
           </Route>
+          <Route path="/swiper" element={<Swiper />} />
           <Route path="/Signin" element={<Signin />} />
           <Route path="/Signup" element={<Signup />} />
         </Routes>

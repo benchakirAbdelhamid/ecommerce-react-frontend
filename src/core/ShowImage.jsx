@@ -4,7 +4,7 @@ import { API_URL } from "../config";
 
 const ShowImage = ({ item, url, className }) => {
   return (
-    <div>
+    <div> 
       <img
          loading="lazy"
         className={className}
