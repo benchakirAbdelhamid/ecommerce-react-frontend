@@ -21,6 +21,7 @@ const Search = () => {
     if (search || category) {
       getProducts({ search: search || undefined, category: category }).then(
         (res) => setProducts(res)
+        // (res) => {setProducts(res) ; console.log(res) }
       );
     } else {
       setProducts([]);

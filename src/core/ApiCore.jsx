@@ -22,6 +22,15 @@ export const getProducts = (params) => {
     .catch((err) => console.log(err));
 };
 
+export const relatedProducts = (id) => {
+  return fetch(
+    `${API_URL}/product/related/${id}`
+  )
+    .then((res) => res.json())
+    .then((res) => res.products)
+    .catch((err) => console.log(err));
+};
+
 export const getcategories = () => {
   return fetch(`${API_URL}/category`, {
     method: "GET",
@@ -53,5 +62,19 @@ export const filterProducts = (skip , limit , filters) => {
   })
     .then((res) => res.json())
     .then((res) => res.products)
+    .catch((err) => console.log(err));
+};
+
+
+export const getOneProduct = (id) => {
+  return fetch(`${API_URL}/product/${id}`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((res) => res.product)
     .catch((err) => console.log(err));
 };

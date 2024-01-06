@@ -15,6 +15,7 @@ import AddCategory from "./admin/category/AddCategory";
 import AddProduct from "./admin/product/AddProduct";
 import Shop from "./core/Shop";
 import Swiper from "./Swiper";
+import Product from "./core/Product";
 
 const AppRoutes = () => {
   const isAuthenticateed = () => {
@@ -55,6 +56,7 @@ const AppRoutes = () => {
         {/* =========code provate routes=========== */}
 
         <Routes>
+          
           <Route element={<PrivateRoutes />}>
             <Route element={<Home />} path="/" exact />
             <Route element={<Shop />} path="/shop" />
@@ -69,6 +71,7 @@ const AppRoutes = () => {
           <Route path="/swiper" element={<Swiper />} />
           <Route path="/Signin" element={<Signin />} />
           <Route path="/Signup" element={<Signup />} />
+          <Route path="/product/:id" element={<Product />} />
         </Routes>
       </BrowserRouter>
     </>
