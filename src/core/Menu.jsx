@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar, Collapse, Button, IconButton } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -12,9 +12,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { isAuthenticated } from "../auth/helpers";
 
+import { useDispatch, useSelector } from "react-redux";
+
 export default function NavbarMenu() {
   const [openNav, setOpenNav] = React.useState(false);
   const navigate = useNavigate();
+
 
   React.useEffect(() => {
     window.addEventListener(
@@ -38,14 +41,14 @@ export default function NavbarMenu() {
   return (
     <>
       {/* <ToastContainer/> */}
-      <Navbar className="mx-auto max-w-screen-xl px-4 py-2">
+      <Navbar className="mx-auto max-w-screen-xl px-4 py-2  " style={{position:'fixed' , top:0 , left:0 , right:0 , zIndex:10}} >
         <div className="flex items-center justify-between text-blue-gray-900">
           <NavLink to="/ecommerce">
             <span
               style={{ fontWeight: "bold" }}
               className="links mr-4 cursor-pointer py-1.5 lg:ml-2"
             >
-              Ecommerce
+              Ecommerce 
             </span>
           </NavLink>
 

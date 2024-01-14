@@ -6,7 +6,13 @@ import { FaDollyFlatbed } from "react-icons/fa";
 import { HiCurrencyDollar } from "react-icons/hi";
 import ShowImage from "./ShowImage";
 
+
+import { addToCart } from "../redux/cartSlice";
+import { useDispatch } from "react-redux";
+
 const Card = ({ product, className }) => {
+
+  const dispatch = useDispatch()
 
   const showStock = (quantity)=>{
     return  quantity > 0 ? 
@@ -65,7 +71,7 @@ const Card = ({ product, className }) => {
               </Button>
             </Link>
             { parseInt(product.quantity) > 0 &&(
-            <Button className="ml-1 flex gap-2" size="sm" variant="outlined">
+            <Button onClick={()=> dispatch(addToCart(product))} className="ml-1 flex gap-2" size="sm" variant="outlined">
               Add to Cart <FaDollyFlatbed />
             </Button>
             ) }

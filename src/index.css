@@ -86,3 +86,21 @@ right: -140px;
   height: 30px;
   /* Adjust as needed */
 }
+
+
+.cart{
+    /* border: 1px solid red; */
+    width: fit-content;
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    z-index: 15;
+}
+.parent-cart{
+    /* border:2px solid rgb(13, 0, 255); */
+     height:75vh;
+     overflow-y :scroll ;
+}
+.parent-cart::-webkit-scrollbar{
+    display: none;
+  }

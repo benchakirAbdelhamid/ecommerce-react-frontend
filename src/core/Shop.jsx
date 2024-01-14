@@ -4,6 +4,7 @@ import { filterProducts, getcategories } from "./ApiCore";
 import FilterByCategory from "./FilterByCategory";
 import FilterByPrice from "./FilterByPrice";
 import Card from "./Card";
+import Cart from "./Cart";
 
 const Shop = () => {
   const [categories, setCategories] = useState([]);
@@ -61,9 +62,9 @@ const Shop = () => {
   // useEffect(()=>{
   //   console.log('--------->' , myFilters)
   // },[ myFilters])
-  useEffect(() => {
-    console.log("--------->", productsFiltred);
-  }, [productsFiltred]);
+  // useEffect(() => {
+    // console.log("--------->", productsFiltred);
+  // }, [productsFiltred]);
 
   return (
     <div>
@@ -71,6 +72,7 @@ const Shop = () => {
         title="Shop pahe"
         description="Choice your favorite Product  in our Store"
       >
+           <Cart/>
         <div style={{ width: "95%" }} class="flex mx-auto  ">
           <div className="w-96 mt-8 ">
             <FilterByCategory

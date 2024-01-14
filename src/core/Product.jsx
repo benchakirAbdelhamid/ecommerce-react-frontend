@@ -23,7 +23,7 @@ const Product = () => {
         // console.log('product ==>',res);
         relatedProducts(productId).then((related) => {
           setRelated(related);
-          console.log("related==>", related);
+          // console.log("related==>", related);
         });
       })
       .catch((err) => console.log(err));
@@ -38,9 +38,9 @@ const Product = () => {
         {product && product.description && <DetailsProduct product={product} />}
 
         <div>
-        {/* <div className="w-5/6 mx-auto mt-8">
-          <h1 class="text-2xl "> Related Product</h1>
-        </div> */}
+        <div className="w-5/6 mx-auto text-center">
+          <h1 class="text-2xl capitalize md:uppercase underline decoration-wavy"> Related Product</h1>
+        </div>
          
           <div class="w-11/12 gap-4 mb-9 mx-auto flex flex-wrap justify-center ">
           {related?.map((product , i)=>(

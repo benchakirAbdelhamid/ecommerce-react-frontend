@@ -7,11 +7,23 @@ import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 import CardSkeleton from "../components/CardSkeleton";
 import Search from "./Search";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
+
+import Cart from "./Cart";
+
 
 function Home() {
   const [productsBestSellers, setProductsBestSellers] = useState([]);
   const [productsArrivals, setProductsArrivals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // reduc toolkit
+  // const cart = useSelector((state)=>state)
+  // useEffect(()=>{
+  //   console.log('====> redux',cart)
+  // },[])
+  // reduc toolkit
 
   const loadBestSellers = () => {
     // with query-strinf dynamic paramc
@@ -28,7 +40,7 @@ function Home() {
     // });
   };
   const loadArrivals = () => {
-     // with query-strinf dynamic paramc
+    // with query-strinf dynamic paramc
     getProducts({ sortBy: "createAt", order: "desc", limit: 3 }).then(
       (products) => {
         setProductsArrivals(products);
@@ -54,6 +66,9 @@ function Home() {
         className=""
       >
         <Search />
+
+        <Cart/>
+
         <div className="w-5/6 mx-auto mt-8">
           <h1 class="text-2xl ">Arrival Products</h1>
         </div>
