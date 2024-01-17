@@ -13,12 +13,14 @@ const Checkout = ({ products }) => {
   const showBtnToCheckout = () => {
     if (isAuthenticated()) {
       return (
-        <button
-          href="#"
-          class="flex items-center justify-center rounded-md border border-transparent bg-gray-900  py-1 text-base font-medium text-white shadow-sm hover:bg-gray-800 w-full "
-        >
-          Checkout
-        </button>
+        <Link to="/Payment">
+          <button
+            href="#"
+            class="flex items-center justify-center rounded-md border border-transparent bg-gray-900  py-1 text-base font-medium text-white shadow-sm hover:bg-gray-800 w-full "
+          >
+            Checkout
+          </button>
+        </Link>
       );
     }
     return (

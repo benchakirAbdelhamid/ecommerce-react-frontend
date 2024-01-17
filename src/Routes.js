@@ -16,6 +16,7 @@ import AddProduct from "./admin/product/AddProduct";
 import Shop from "./core/Shop";
 import Swiper from "./Swiper";
 import Product from "./core/Product";
+import Payment from "./core/Payment";
 
 const AppRoutes = () => {
   const isAuthenticateed = () => {
@@ -56,12 +57,12 @@ const AppRoutes = () => {
         {/* =========code provate routes=========== */}
 
         <Routes>
-          
           <Route element={<PrivateRoutes />}>
             <Route element={<Home />} path="/" exact />
             <Route element={<Shop />} path="/shop" />
             <Route element={<Dashboard />} path="/dashboard" />
             <Route element={<Navigate to="/" />} path="*" />
+            <Route  element={<Payment />} path="/Payment" />
           </Route>
           <Route element={<AdminRoute />}>
             <Route element={<AdminDashboard />} path="/admin/dashboard" />
@@ -69,6 +70,7 @@ const AppRoutes = () => {
             <Route element={<AddProduct />} path="/create/product" />
           </Route>
           <Route path="/swiper" element={<Swiper />} />
+          {/* <Route element={<Home />} path="/"  /> */}
           <Route path="/Signin" element={<Signin />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/product/:id" element={<Product />} />

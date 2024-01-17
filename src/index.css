@@ -104,3 +104,22 @@ right: -140px;
 .parent-cart::-webkit-scrollbar{
     display: none;
   }
+
+
+  .parent-swiper{
+    /* border: 3px solid red; */
+    position: relative;
+    cursor: pointer;
+  }
+  .parent-btn-swiper{
+    /* border: 3px solid rgb(0, 153, 255); */
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    top: 50%;
+  }
+  .img-swiper{
+    /* border: 2px solid red; */
+    height: 500px;
+  }

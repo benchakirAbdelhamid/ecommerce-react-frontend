@@ -46,10 +46,10 @@ const Cart = () => {
         placement="right"
         open={openRight}
         onClose={closeDrawerRight}
-        className="p-4"
+        className="p-4  "
         size={380}
       >
-        <div className="mb-6 flex items-center justify-between">
+        <div style={{zIndex:'100'}} className="mb-6 flex items-center justify-between">
           <Typography variant="h5" color="blue-gray">
             CART
             <span class="ml-3 relative select-none items-center  rounded-lg bg-gray-900 py-1.5 px-3 font-sans text-xs font-bold  text-white">
@@ -78,7 +78,7 @@ const Cart = () => {
           </IconButton>
         </div>
 
-        <div className=" ">
+        <div className=" "  style={{zIndex:'100'}}>
           {/* <Button size="sm" variant="outlined">
             Documentation
           </Button>
