@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
 import { useSelector } from "react-redux";
-import { isAuthenticated, emptyCart } from "../auth/helpers";
+import { isAuthenticated, emptyCart, Current_Date } from "../auth/helpers";
 
 // animation tostify
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { createOrder } from "./ApiCore";
+import { API_URL } from "../config";
 
 const Payment = () => {
   const products = useSelector((state) => state.cart);
-  let totalPrice = 0;
-  const [infoPayment , setInfoPayment] = useState({
-    full_name : '',
-    address : '',
-    phone_number : '',
-    city : '',
-  })
+
+  const [infoPayment, setInfoPayment] = useState({
+    full_name: "",
+    address: "",
+    phone_number: "",
+    city: "",
+  });
 
   const handleChange = (e) => {
     setInfoPayment({ ...infoPayment, [e.target.id]: e.target.value });
@@ -30,19 +32,36 @@ const Payment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    totalPrice = products.cartItems.reduce(
+    let amount = 0;
+    const { user, token } = isAuthenticated();
+    const date = Current_Date()
+    
+    // console.log(date)
+
+    amount = products.cartItems.reduce(
       (total, product) => total + product.quantity * product.price,
       0
     );
-    // emptyCart() // empty localstorage cart
-    
-    console.log("products===>", products);
-    console.log("totalPrice===>", totalPrice);
-    console.log("infoPayment===>", infoPayment);
 
-    toast.success(`Valid , Thanks , Payment Was Successfuly`, {
-      position: toast.POSITION.BOTTOM_LEFT,
-    });
+    let orderData = {
+      products: products.cartItems,
+      total_quatity: products.totalQuantity,
+      amount,
+      infoPayment,
+      date
+    };
+
+    // console.log(orderData)
+    createOrder(user._id, token, orderData)
+      .then((res) => {
+        emptyCart() // empty localstorage cart
+        toast.success(`Valid , Thanks , Payment Was Successfuly`, {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+
   };
 
   return (

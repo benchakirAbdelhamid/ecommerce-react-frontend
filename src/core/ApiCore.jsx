@@ -78,3 +78,18 @@ export const getOneProduct = (id) => {
     .then((res) => res.product)
     .catch((err) => console.log(err));
 };
+
+export const createOrder = (userId , token  , orderData) => {
+   return fetch(`${API_URL}/order/create/${userId}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body : JSON.stringify(orderData)
+  })
+    .then((res) => res.json())
+    .then((res) => res )
+    .catch((err) => console.log(err));
+};
