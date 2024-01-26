@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticated, emptyCart, Current_Date } from "../auth/helpers";
 
 // animation tostify
@@ -8,9 +8,11 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createOrder } from "./ApiCore";
 import { API_URL } from "../config";
+import { emptyCartItems } from "../redux/cartSlice";
 
 const Payment = () => {
   const products = useSelector((state) => state.cart);
+  const dispatch = useDispatch()
 
   const [infoPayment, setInfoPayment] = useState({
     full_name: "",
@@ -55,6 +57,7 @@ const Payment = () => {
     createOrder(user._id, token, orderData)
       .then((res) => {
         emptyCart() // empty localstorage cart
+        dispatch(emptyCartItems()) // emty cart iteam in store redux
         toast.success(`Valid , Thanks , Payment Was Successfuly`, {
           position: toast.POSITION.BOTTOM_LEFT,
         });

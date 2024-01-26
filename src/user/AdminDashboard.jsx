@@ -41,10 +41,13 @@ const AdminDashboard = () => {
           </h5>
           <List>
             <ListItem>
-              <Link to="/create/category">Create category</Link>
+              <Link to="/create/category">Create Category</Link>
             </ListItem>
             <ListItem>
-              <Link to="/create/product">create product</Link>
+              <Link to="/create/product">Create Product</Link>
+            </ListItem>
+            <ListItem>
+              <Link to="/admin/order">View Orders</Link>
             </ListItem>
           </List>
         </div>

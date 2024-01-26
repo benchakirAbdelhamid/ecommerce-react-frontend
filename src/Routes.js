@@ -17,6 +17,7 @@ import Shop from "./core/Shop";
 import Swiper from "./Swiper";
 import Product from "./core/Product";
 import Payment from "./core/Payment";
+import ListOrders from "./admin/order/ListOrders";
 
 const AppRoutes = () => {
   const isAuthenticateed = () => {
@@ -66,6 +67,7 @@ const AppRoutes = () => {
           </Route>
           <Route element={<AdminRoute />}>
             <Route element={<AdminDashboard />} path="/admin/dashboard" />
+            <Route element={<ListOrders />} path="/admin/order" />
             <Route element={<AddCategory />} path="/create/category" />
             <Route element={<AddProduct />} path="/create/product" />
           </Route>
